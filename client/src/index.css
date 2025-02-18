@@ -138,11 +138,11 @@ button:hover {
 }
 
 label, h3, h1 {
-  color: black;
+  color: #f8ffe5;
 }
 
 .app > p {
-  color: black;
+  color: #f8ffe5;
 }
 
 .form {

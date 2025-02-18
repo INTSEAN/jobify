@@ -3,15 +3,12 @@ import "./Loader.css";
 
 const Loading = () => {
   return (
-    <div className="loader">
-      <div className="wrapper">
-        <div className="circle"></div>
-        <div className="line-1"></div>
-        <div className="line-2"></div>
-        <div className="line-3"></div>
-        <div className="line-4"></div>
+    <>
+      <div class="loader">
+        <span></span>
       </div>
-    </div>
+      <h1 style={{ color: "#06d6a0", position: "fixed", top: "70%", left: "55%", transform: "translate(-50%, -50%)" }}>Loading...</h1>
+    </>
   );
 }
 
