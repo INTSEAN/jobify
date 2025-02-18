@@ -91,7 +91,10 @@ const InterviewConversation = () => {
   const fetchInterviewStep = async (latestCandidateResponse = "") => {
     // Check if the number of questions asked has reached the limit
     if (questionCount >= numQuestions) {
-      setConversationHistory((prev) => prev + "\n🤖: Thank you for your time, this concludes our interview.");
+      setConversationHistory(
+        (prev) =>
+          prev + "\n🤖: Thank you for your time, this concludes our interview."
+      );
       return;
     }
 
@@ -108,7 +111,9 @@ const InterviewConversation = () => {
             difficulty,
             conversationHistory:
               conversationHistory +
-              (latestCandidateResponse ? "\n🧑: " + latestCandidateResponse : ""),
+              (latestCandidateResponse
+                ? "\n🧑: " + latestCandidateResponse
+                : ""),
           }),
         }
       );
@@ -119,7 +124,9 @@ const InterviewConversation = () => {
         setQuestionCount(newCount);
 
         if (newCount === numQuestions) {
-          const finalMessage = newAiResponse + " Thank you for your time, this concludes our interview.";
+          const finalMessage =
+            newAiResponse +
+            " Thank you for your time, this concludes our interview.";
           setConversationHistory((prev) => prev + "\n🤖: " + finalMessage);
           speak(finalMessage);
         } else {
@@ -156,7 +163,6 @@ const InterviewConversation = () => {
       alert("Please enter your name to start the interview.");
       return;
     }
-    // Reset conversation history and question count; then start the interview
     setConversationHistory("");
     setQuestionCount(0);
     fetchInterviewStep();
@@ -165,7 +171,9 @@ const InterviewConversation = () => {
   const handleEndInterview = () => {
     stopListening();
     setConversationHistory("Interview ended by the user.");
-    setQuestionCount(5); // Ensure no more questions are asked
+    setAiResponse("");
+    window.speechSynthesis.cancel();
+    setQuestionCount(5);
   };
 
   const handleVoiceToggle = () => {
@@ -243,7 +251,9 @@ const InterviewConversation = () => {
           {["easy", "medium", "hard", "expert", "adaptive"].map((level) => (
             <button
               key={level}
-              className={`difficulty-button ${difficulty === level ? "selected" : ""}`}
+              className={`difficulty-button ${
+                difficulty === level ? "selected" : ""
+              }`}
               onClick={() => handleDifficultyChange(level)}
             >
               {level.charAt(0).toUpperCase() + level.slice(1)}
