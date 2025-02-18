@@ -102,7 +102,7 @@ button:hover {
   margin-top: 30px;
   min-height: 10vh;
   background-color: #06d6a0;
-  color: #f8ffe5;
+  color: black;
   padding: 30px;
   border-radius: 3px 3px 0 0;
   display: flex;
@@ -124,7 +124,7 @@ button:hover {
 .resumeBody {
   width: 80%;
   margin: 0 auto;
-  color: #f8ffe5;
+  color: black;
   padding: 30px;
   min-height: 80vh;
   border: 1px solid #06d6a0;
@@ -138,11 +138,11 @@ button:hover {
 }
 
 label, h3, h1 {
-  color: #f8ffe5;
+  color: black;
 }
 
 .app > p {
-  color: #f8ffe5;
+  color: black;
 }
 
 .form {

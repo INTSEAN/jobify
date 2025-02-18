@@ -177,7 +177,7 @@ const InterviewConversation = () => {
         padding: "20px",
         maxWidth: "600px",
         margin: "auto",
-        color: "white",
+        color: "#f8ffe5",
         marginTop: "40px",
       }}
     >
@@ -196,7 +196,7 @@ const InterviewConversation = () => {
             width: "100%",
             marginBottom: "10px",
             fontSize: "1.2rem",
-            color: "white",
+            color: "#f8ffe5",
             backgroundColor: "transparent",
             border: "1px solid #06d6a0",
           }}
@@ -211,7 +211,7 @@ const InterviewConversation = () => {
             width: "100%",
             fontSize: "1.2rem",
             backgroundColor: "transparent",
-            color: "white",
+            color: "#f8ffe5",
             border: "1px solid #06d6a0",
             marginBottom: "10px",
             textAlign: "left",
@@ -229,7 +229,7 @@ const InterviewConversation = () => {
           className="numQuestions"
           style={{ width: "100%", marginBottom: "10px" }}
         />
-        <h3>Select Difficulty:</h3>
+        <h3>Select QuestionDifficulty:</h3>
         <div className="difficulty-buttons">
           {["easy", "medium", "hard", "expert", "adaptive"].map((level) => (
             <button
@@ -283,8 +283,8 @@ const InterviewConversation = () => {
       <div
         style={{
           marginTop: "20px",
-          border: "1px solid #ccc",
-          color: "white",
+          border: "1px solid #f8ffe5",
+          color: "#f8ffe5",
           padding: "10px",
           height: "300px",
           overflowY: "scroll",
