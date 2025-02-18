@@ -162,21 +162,19 @@ app.post("/interview-conversation", async (req, res) => {
   let prompt = "";
   if (!conversationHistory || conversationHistory.trim() === "") {
     prompt = `You are a professional interviewer. Introduce yourself as the Recruiter at the company in the job description. The candidate, ${userName}, has applied for a position with the following job description:
-${jobDescription}. Conduct a ${difficulty} level interview with ${userName} for the job: ${jobDescription}. Please start the interview by greeting ${userName} and asking a tailored initial interview question. Please keep the question part as brief as possible`;
+${jobDescription}. Conduct a ${difficulty} level interview with ${userName} for the job: ${jobDescription}. Please start the interview by greeting ${userName} and asking a tailored initial interview question. Please keep the question as brief and to the point as possible`;
   } else {
     if (questionCount >= numQuestions) {
       prompt = `Thank ${userName} for their time. Give them 2 tips for improving their interview skills and 1 positive comment based on ${conversationHistory} is present.`;
     } else if (difficulty === "adaptive") {
-      prompt = `Based on the following conversation so far:${conversationHistory} adapt the interview's difficulty to the candidate's responses. If the interview is going well, make the interview more difficult. If the interview is going poorly, make the interview easier. Then also considering the job description:  
+      prompt = `Based on the following conversation so far:${conversationHistory} adapt the interview's difficulty to the candidate's responses. If the interview is going well, make the interview more difficult. If the interview is going poorly, make the interview easier and reassure the candidate that they are doing okay. Then also considering the job description:  
       ${jobDescription} Please generate the next interview question to continue the conversation with ${userName}. Make sure if the candidate asks a question in the ${conversationHistory} you answer it.
-      Mention the user's name in your response. Do not include any interviewer word in your response.
-      Finally, make sure you tell the cadidate a bit more about the company and the job description. Please keep the question part as brief as possible
+      Mention the user's name in your response. Do not include any interviewer word in your response. Please keep the question part as brief and to the point as possible
       `;
     } else {
       prompt = `Based on the following conversation so far:${conversationHistory} then also considering the job description:  
-      ${jobDescription} Please generate the next interview question to continue the conversation with ${userName}. Make sure if the candidate asks a question in the ${conversationHistory} you answer it.
-      Mention the user's name in your response. Do not include any interviewer word in your response.
-      Finally, make sure you tell the cadidate a bit more about the company and the job description. Please keep the question part as brief as possible.
+      ${jobDescription} Give a one sentence response to the user's last response. If interesting/extraordinary (that is if the user happens to mention a lot of experice based on the ${conversationHistory} related to the job description) ask more about it, briefly. If not please generate the next ${difficulty} level interview question to continue the conversation with ${userName}. Make sure if the candidate asks a question in the ${conversationHistory} you answer it.
+      Mention the user's name in your response. Do not include any interviewer word in your response. Please keep the question part as brief and to the point as possible.
       `;
     }
   }
