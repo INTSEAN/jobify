@@ -128,7 +128,7 @@ function extractTextWithPdfExtract(filePath) {
 }
 
 // --- Existing resume creation endpoint (unchanged) ---
-app.post("/cover-letter-generator", async (req, res) => {
+app.post("/cover-letter-generator", upload.none(), async (req, res) => {
   const { fullName, currentPosition, currentLength, currentTechnologies, workHistory } = req.body;
   let workArray;
   try {
