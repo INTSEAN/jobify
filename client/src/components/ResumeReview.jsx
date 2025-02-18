@@ -20,11 +20,15 @@ const ResumeReview = () => {
     formData.append("resumeFile", resume, resume.name);
 
     try {
-      const response = await axios.post("http://localhost:4000/resume-review", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+      const response = await axios.post(
+        `${import.meta.url.env.BACKEND_URL}/resume-review`,
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
       setScore(response.data.score);
       setFeedback(response.data.feedback);
     } catch (error) {
@@ -76,4 +80,4 @@ const ResumeReview = () => {
   );
 };
 
-export default ResumeReview; 
+export default ResumeReview;

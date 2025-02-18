@@ -39,7 +39,7 @@ const Home = ({ setResult }) => {
     formData.append("currentTechnologies", currentTechnologies);
     formData.append("workHistory", JSON.stringify(companyInfo));
     axios
-      .post("http://localhost:4000/resume/create", formData, {})
+      .post(`${import.meta.url.env.BACKEND_URL}/resume/create`, formData, {})
       .then((res) => {
         if (res.data.message) {
           setResult(res.data.data);
@@ -48,7 +48,7 @@ const Home = ({ setResult }) => {
       })
       .catch((err) => console.error(err));
     setLoading(true);
-};
+  };
   if (loading) {
     return <Loading />;
   }
