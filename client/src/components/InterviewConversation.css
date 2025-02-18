@@ -1,0 +1,31 @@
+.difficulty-buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 10px;
+}
+
+.difficulty-button {
+  padding: 10px 20px;
+  font-weight: 100;
+  border: 0px solid #06d6a0;
+  background-color: transparent;
+  color: #06d6a0;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.difficulty-button.selected {
+  background-color: #06d6a0;
+  color: #f8ffe5;
+}
+
+.difficulty-button:hover {
+  border: 1px solid #06d6a0;
+  color: #f8ffe5;
+} 
+
+.numQuestions {
+  background-color: transparent;
+  color: #06d6a0;
+  border: 1px solid #06d6a0;
+}

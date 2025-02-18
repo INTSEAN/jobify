@@ -1,5 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import VoiceInterface from "./VoiceInterface";
+import "./InterviewConversation.css"; // Ensure you have a CSS file for styling
 
 const InterviewConversation = () => {
   const [userName, setUserName] = useState("");
@@ -175,6 +176,10 @@ const InterviewConversation = () => {
     }
   };
 
+  const handleDifficultyChange = (level) => {
+    setDifficulty(level);
+  };
+
   return (
     <div
       style={{
@@ -230,19 +235,21 @@ const InterviewConversation = () => {
           onChange={(e) => setNumQuestions(e.target.value)}
           min="1"
           max="10"
+          className="numQuestions"
           style={{ width: "100%", marginBottom: "10px" }}
         />
-        <label htmlFor="difficulty">Difficulty:</label>
-        <select
-          id="difficulty"
-          value={difficulty}
-          onChange={(e) => setDifficulty(e.target.value)}
-          style={{ width: "100%", marginBottom: "10px" }}
-        >
-          <option value="easy">Easy</option>
-          <option value="medium">Medium</option>
-          <option value="hard">Hard</option>
-        </select>
+        <h3>Select Difficulty:</h3>
+        <div className="difficulty-buttons">
+          {["easy", "medium", "hard", "expert", "adaptive"].map((level) => (
+            <button
+              key={level}
+              className={`difficulty-button ${difficulty === level ? "selected" : ""}`}
+              onClick={() => handleDifficultyChange(level)}
+            >
+              {level.charAt(0).toUpperCase() + level.slice(1)}
+            </button>
+          ))}
+        </div>
         <label htmlFor="voiceSelect">Select Voice:</label>
         <select
           id="voiceSelect"

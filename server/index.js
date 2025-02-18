@@ -166,7 +166,14 @@ ${jobDescription}. Conduct a ${difficulty} level interview with ${userName} for 
 
 Please start the interview by greeting ${userName} and asking a tailored initial interview question.`;
   } else {
-    prompt = `Based on the following conversation so far:${conversationHistory} give the candidate honest feedback in one sentence. The also considering the job description:  
+    if (difficulty === "adaptive") {
+      prompt = `Based on the following conversation so far:${conversationHistory} adapt the interview's difficulty to the candidate's responses. If the interview is going well, make the interview more difficult. If the interview is going poorly, make the interview easier. Then also considering the job description:  
+      ${jobDescription} Please generate the next interview question to continue the conversation with ${userName}. Make sure if the candidate asks a question in the ${conversationHistory} you answer it.
+      Mention the user's name in your response. Do not include any interviewer word in your response.
+      Finally, make sure you tell the cadidate a bit more about the company and the job description.
+      `;
+    }
+    prompt = `Based on the following conversation so far:${conversationHistory} give the candidate honest feedback in one sentence. Then also considering the job description:  
     ${jobDescription} Please generate the next interview question to continue the conversation with ${userName}. Make sure if the candidate asks a question in the ${conversationHistory} you answer it.
     Mention the user's name in your response. Do not include any interviewer word in your response.
     Finally, make sure you tell the cadidate a bit more about the company and the job description.
