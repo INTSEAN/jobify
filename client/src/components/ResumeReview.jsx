@@ -21,7 +21,7 @@ const ResumeReview = () => {
 
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_BACKEND_URL}/resume-review`,
+        `${import.meta.env.VITE_BACKEND_URL}/cover-letter-generator`,
         formData,
         {
           headers: {

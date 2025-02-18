@@ -8,7 +8,6 @@ const Home = ({ setResult }) => {
   const [currentPosition, setCurrentPosition] = useState("");
   const [currentLength, setCurrentLength] = useState(1);
   const [currentTechnologies, setCurrentTechnologies] = useState("");
-  const [headshot, setHeadshot] = useState(null);
   const [companyInfo, setCompanyInfo] = useState([{ name: "", position: "" }]);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -32,14 +31,13 @@ const Home = ({ setResult }) => {
     e.preventDefault();
 
     const formData = new FormData();
-    formData.append("headshotImage", headshot, headshot.name);
     formData.append("fullName", fullName);
     formData.append("currentPosition", currentPosition);
     formData.append("currentLength", currentLength);
     formData.append("currentTechnologies", currentTechnologies);
     formData.append("workHistory", JSON.stringify(companyInfo));
     axios
-      .post(`${import.meta.env.VITE_BACKEND_URL}/resume/create`, formData, {})
+      .post(`${import.meta.env.VITE_BACKEND_URL}/resume-create`, formData, {})
       .then((res) => {
         if (res.data.message) {
           setResult(res.data.data);
@@ -106,15 +104,6 @@ const Home = ({ setResult }) => {
             />
           </div>
         </div>
-        <label htmlFor="photo">Upload your headshot image</label>
-        <input
-          type="file"
-          name="photo"
-          required
-          id="photo"
-          accept="image/x-png,image/jpeg"
-          onChange={(e) => setHeadshot(e.target.files[0])}
-        />
 
         <h3>Companies you've worked at</h3>
 
