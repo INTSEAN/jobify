@@ -14,6 +14,8 @@ const InterviewConversation = () => {
   const [selectedVoice, setSelectedVoice] = useState(null);
   const recognition = useRef(null);
   const timerIntervalRef = useRef(null);
+  const [numQuestions, setNumQuestions] = useState(5);
+  const [difficulty, setDifficulty] = useState("medium");
 
   useEffect(() => {
     if (error) {
@@ -86,9 +88,12 @@ const InterviewConversation = () => {
   };
 
   const fetchInterviewStep = async (latestCandidateResponse = "") => {
-    if (questionCount >= 5) {
+    // Check if the number of questions asked has reached the limit
+    if (questionCount >= numQuestions) {
+      setConversationHistory((prev) => prev + "\n🤖: Thank you for your time, this concludes our interview.");
       return;
     }
+
     try {
       const response = await fetch(
         `${import.meta.env.VITE_BACKEND_URL}/interview-conversation`,
@@ -98,11 +103,11 @@ const InterviewConversation = () => {
           body: JSON.stringify({
             userName,
             jobDescription,
+            numQuestions,
+            difficulty,
             conversationHistory:
               conversationHistory +
-              (latestCandidateResponse
-                ? "\n🧑: " + latestCandidateResponse
-                : ""),
+              (latestCandidateResponse ? "\n🧑: " + latestCandidateResponse : ""),
           }),
         }
       );
@@ -110,17 +115,16 @@ const InterviewConversation = () => {
       if (response.ok) {
         const newAiResponse = data.aiResponse;
         const newCount = questionCount + 1;
-        if (newCount === 5) {
-          const finalMessage =
-            newAiResponse +
-            " Thank you for your time, this concludes our interview.";
+        setQuestionCount(newCount);
+
+        if (newCount === numQuestions) {
+          const finalMessage = newAiResponse + " Thank you for your time, this concludes our interview.";
           setConversationHistory((prev) => prev + "\n🤖: " + finalMessage);
           speak(finalMessage);
         } else {
           setConversationHistory((prev) => prev + "\n🤖: " + newAiResponse);
           speak(newAiResponse);
         }
-        setQuestionCount(newCount);
       } else {
         setError("Error: " + data.message);
       }
@@ -218,6 +222,27 @@ const InterviewConversation = () => {
             textWrap: "balance",
           }}
         />
+        <label htmlFor="numQuestions">Number of Questions:</label>
+        <input
+          type="number"
+          id="numQuestions"
+          value={numQuestions}
+          onChange={(e) => setNumQuestions(e.target.value)}
+          min="1"
+          max="10"
+          style={{ width: "100%", marginBottom: "10px" }}
+        />
+        <label htmlFor="difficulty">Difficulty:</label>
+        <select
+          id="difficulty"
+          value={difficulty}
+          onChange={(e) => setDifficulty(e.target.value)}
+          style={{ width: "100%", marginBottom: "10px" }}
+        >
+          <option value="easy">Easy</option>
+          <option value="medium">Medium</option>
+          <option value="hard">Hard</option>
+        </select>
         <label htmlFor="voiceSelect">Select Voice:</label>
         <select
           id="voiceSelect"

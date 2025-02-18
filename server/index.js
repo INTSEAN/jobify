@@ -73,59 +73,6 @@ async function ChatGPTFunction(text) {
   }
 }
 
-// Utility function to parse resume text into sections based on headers.
-function parseResumeSections(text) {
-  // Define common resume section headers.
-  const sectionNames = [
-    "OBJECTIVE", "SUMMARY", "EDUCATION", "EXPERIENCE", "WORK EXPERIENCE",
-    "SKILLS", "PROJECTS", "CERTIFICATIONS", "ACHIEVEMENTS", "INTERESTS",
-    "ACTIVITIES", "CONTACT"
-  ];
-  const lines = text.split('\n');
-  const sections = [];
-  let currentSection = { header: "GENERAL", content: "" };
-
-  lines.forEach(line => {
-    let trimmed = line.trim();
-    // Check if the line matches one of the section headers (ignoring any trailing colon)
-    if (sectionNames.includes(trimmed.replace(/:$/, '').toUpperCase())) {
-      if (currentSection.content.trim()) {
-        sections.push(currentSection);
-      }
-      currentSection = { header: trimmed.replace(/:$/, '').toUpperCase(), content: "" };
-    } else {
-      currentSection.content += line + "\n";
-    }
-  });
-  if (currentSection.content.trim()) {
-    sections.push(currentSection);
-  }
-  return sections;
-}
-
-// Function to extract text from a PDF using pdftotext.
-function extractTextWithPdfExtract(filePath) {
-  return new Promise((resolve, reject) => {
-    const pdfExtract = spawn('pdftotext', [filePath, '-']);
-    let data = '';
-
-    pdfExtract.stdout.on('data', (chunk) => {
-      data += chunk;
-    });
-
-    pdfExtract.stderr.on('data', (error) => {
-      console.error('Error:', error.toString());
-    });
-
-    pdfExtract.on('close', (code) => {
-      if (code !== 0) {
-        reject(new Error(`pdftotext process exited with code ${code}`));
-      } else {
-        resolve(data.trim());
-      }
-    });
-  });
-}
 
 // --- Existing resume creation endpoint (unchanged) ---
 app.post("/cover-letter-generator", upload.none(), async (req, res) => {
@@ -211,21 +158,19 @@ Please generate a compelling and professional cover letter tailored for this job
 
 // --- New Interview Conversation Endpoint ---
 app.post("/interview-conversation", async (req, res) => {
-  const { userName, jobDescription, conversationHistory } = req.body;
+  const { userName, jobDescription, conversationHistory, numQuestions, difficulty } = req.body;
   let prompt = "";
   if (!conversationHistory || conversationHistory.trim() === "") {
-    prompt = `You are a professional interviewer. The candidate, ${userName}, has applied for a position with the following job description:
-${jobDescription}
+    prompt = `You are a professional interviewer. Introduce yourself as the Recruiter at the company in the job description. The candidate, ${userName}, has applied for a position with the following job description:
+${jobDescription}. Conduct a ${difficulty} level interview with ${userName} for the job: ${jobDescription}.
 
 Please start the interview by greeting ${userName} and asking a tailored initial interview question.`;
   } else {
-    prompt = `Based on the following conversation so far:
-${conversationHistory}
-
-And considering the job description:
-${jobDescription}
-
-Please generate the next interview question to continue the conversation with ${userName}. Mention the user's name in your response. Do not include any interviewer word in your response.`;
+    prompt = `Based on the following conversation so far:${conversationHistory} give the candidate honest feedback in one sentence. The also considering the job description:  
+    ${jobDescription} Please generate the next interview question to continue the conversation with ${userName}. Make sure if the candidate asks a question in the ${conversationHistory} you answer it.
+    Mention the user's name in your response. Do not include any interviewer word in your response.
+    Finally, make sure you tell the cadidate a bit more about the company and the job description.
+    `;
   }
   try {
     const aiResponse = await ChatGPTFunction(prompt);
@@ -242,5 +187,4 @@ Please generate the next interview question to continue the conversation with ${
   }
 });
 
-// Instead of app.listen, export the app for Vercel
 export default app;
