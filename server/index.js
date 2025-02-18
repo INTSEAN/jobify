@@ -22,6 +22,11 @@ app.use("/uploads", express.static("uploads"));
 app.use(express.json());
 app.use(cors());
 
+// Optionally add a default GET route to handle "/"
+app.get("/", (req, res) => {
+  res.send("Hello, welcome to my API!");
+});
+
 // Utility to generate a simple ID.
 const generateID = () => Math.random().toString(36).substring(2, 10);
 
@@ -238,6 +243,5 @@ Please generate the next interview question to continue the conversation with ${
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`Server listening on http://localhost:${PORT}`);
-});
+// Instead of app.listen, export the app for Vercel
+export default app;
