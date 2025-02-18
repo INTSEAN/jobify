@@ -229,7 +229,7 @@ const InterviewConversation = () => {
           className="numQuestions"
           style={{ width: "100%", marginBottom: "10px" }}
         />
-        <h3>Select QuestionDifficulty:</h3>
+        <h3>Select Question Difficulty:</h3>
         <div className="difficulty-buttons">
           {["easy", "medium", "hard", "expert", "adaptive"].map((level) => (
             <button
@@ -258,9 +258,6 @@ const InterviewConversation = () => {
           ))}
         </select>
         <br />
-        <button type="submit" style={{ marginTop: "10px" }}>
-          Start Interview
-        </button>
       </form>
       <div style={{ marginTop: "10px", display: "flex", alignItems: "center" }}>
         <VoiceInterface
