@@ -39,7 +39,7 @@ const Home = ({ setResult }) => {
     formData.append("currentTechnologies", currentTechnologies);
     formData.append("workHistory", JSON.stringify(companyInfo));
     axios
-      .post(`${import.meta.url.env.BACKEND_URL}/resume/create`, formData, {})
+      .post(`${import.meta.env.VITE_BACKEND_URL}/resume/create`, formData, {})
       .then((res) => {
         if (res.data.message) {
           setResult(res.data.data);

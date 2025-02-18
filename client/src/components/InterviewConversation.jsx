@@ -90,7 +90,7 @@ const InterviewConversation = () => {
     }
     try {
       const response = await fetch(
-        `${import.meta.url.env.BACKEND_URL}/interview-conversation`,
+        `${import.meta.env.VITE_BACKEND_URL}/interview-conversation`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
