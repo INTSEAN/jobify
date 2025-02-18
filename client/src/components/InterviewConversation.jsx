@@ -247,10 +247,10 @@ const InterviewConversation = () => {
           disabled={listening}
           style={{ marginRight: "10px" }}
         >
-          {listening ? "Listening..." : "Start Listening"}
+          {listening ? "You are talking..." : "Start Speaking"}
         </button>
         <button onClick={stopListening} disabled={!listening}>
-          Stop Listening
+          Stop Speaking
         </button>
         <button
           className="end-interview"
