@@ -30,12 +30,17 @@ const Home = ({ setResult }) => {
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
+    console.log("Company Info:", companyInfo);
+    const workHistoryJSON = JSON.stringify(companyInfo);
+    console.log("Work History JSON:", workHistoryJSON);
+
     const formData = new FormData();
     formData.append("fullName", fullName);
     formData.append("currentPosition", currentPosition);
     formData.append("currentLength", currentLength);
     formData.append("currentTechnologies", currentTechnologies);
-    formData.append("workHistory", JSON.stringify(companyInfo));
+    formData.append("workHistory", workHistoryJSON);
+
     axios
       .post(
         `${import.meta.env.VITE_BACKEND_URL}/cover-letter-generator`,
