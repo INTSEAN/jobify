@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import VoiceInterface from "./VoiceInterface";
 
 const InterviewConversation = () => {
   const [userName, setUserName] = useState("");
@@ -162,6 +163,14 @@ const InterviewConversation = () => {
     setQuestionCount(5); // Ensure no more questions are asked
   };
 
+  const handleVoiceToggle = () => {
+    if (listening) {
+      stopListening();
+    } else {
+      startListening();
+    }
+  };
+
   return (
     <div
       style={{
@@ -196,8 +205,8 @@ const InterviewConversation = () => {
         <textarea
           value={jobDescription}
           onChange={(e) => setJobDescription(e.target.value)}
-          placeholder="Enter job description here..."
-          rows="5"
+          placeholder="Paste job description here..."
+          rows="2"
           style={{
             width: "100%",
             fontSize: "1.2rem",
@@ -228,30 +237,11 @@ const InterviewConversation = () => {
           Start Interview
         </button>
       </form>
-      <div
-        style={{
-          marginTop: "20px",
-          border: "1px solid #ccc",
-          color: "white",
-          padding: "10px",
-          height: "300px",
-          overflowY: "scroll",
-          whiteSpace: "pre-wrap",
-        }}
-      >
-        {conversationHistory || "Conversation will appear here..."}
-      </div>
-      <div style={{ marginTop: "10px" }}>
-        <button
-          onClick={startListening}
-          disabled={listening}
-          style={{ marginRight: "10px" }}
-        >
-          {listening ? "You are talking..." : "Start Speaking"}
-        </button>
-        <button onClick={stopListening} disabled={!listening}>
-          Stop Speaking
-        </button>
+      <div style={{ marginTop: "10px", display: "flex", alignItems: "center" }}>
+        <VoiceInterface
+          isRecording={listening}
+          onToggleRecording={handleVoiceToggle}
+        />
         <button
           className="end-interview"
           onClick={handleEndInterview}
@@ -264,6 +254,19 @@ const InterviewConversation = () => {
             Response Time: {responseTime}s
           </span>
         )}
+      </div>
+      <div
+        style={{
+          marginTop: "20px",
+          border: "1px solid #ccc",
+          color: "white",
+          padding: "10px",
+          height: "300px",
+          overflowY: "scroll",
+          whiteSpace: "pre-wrap",
+        }}
+      >
+        {conversationHistory || "Conversation will appear here..."}
       </div>
     </div>
   );
