@@ -158,13 +158,15 @@ Please generate a compelling and professional cover letter tailored for this job
 
 // --- New Interview Conversation Endpoint ---
 app.post("/interview-conversation", async (req, res) => {
-  const { userName, jobDescription, conversationHistory, numQuestions, difficulty } = req.body;
+  const { userName, jobDescription, conversationHistory, questionCount,  numQuestions, difficulty } = req.body;
   let prompt = "";
   if (!conversationHistory || conversationHistory.trim() === "") {
     prompt = `You are a professional interviewer. Introduce yourself as the Recruiter at the company in the job description. The candidate, ${userName}, has applied for a position with the following job description:
 ${jobDescription}. Conduct a ${difficulty} level interview with ${userName} for the job: ${jobDescription}. Please start the interview by greeting ${userName} and asking a tailored initial interview question. Please keep the question part as brief as possible`;
   } else {
-    if (difficulty === "adaptive") {
+    if (questionCount >= numQuestions) {
+      prompt = `Thank ${userName} for their time. Give them 2 tips for improving their interview skills and 1 positive comment based on ${conversationHistory} is present.`;
+    } else if (difficulty === "adaptive") {
       prompt = `Based on the following conversation so far:${conversationHistory} adapt the interview's difficulty to the candidate's responses. If the interview is going well, make the interview more difficult. If the interview is going poorly, make the interview easier. Then also considering the job description:  
       ${jobDescription} Please generate the next interview question to continue the conversation with ${userName}. Make sure if the candidate asks a question in the ${conversationHistory} you answer it.
       Mention the user's name in your response. Do not include any interviewer word in your response.

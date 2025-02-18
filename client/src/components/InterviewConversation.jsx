@@ -90,14 +90,6 @@ const InterviewConversation = () => {
 
   const fetchInterviewStep = async (latestCandidateResponse = "") => {
     // Check if the number of questions asked has reached the limit
-    if (questionCount >= numQuestions) {
-      setConversationHistory(
-        (prev) =>
-          prev + "\n🤖: Thank you for your time, this concludes our interview."
-      );
-      return;
-    }
-
     try {
       const response = await fetch(
         `${import.meta.env.VITE_BACKEND_URL}/interview-conversation`,
@@ -122,17 +114,8 @@ const InterviewConversation = () => {
         const newAiResponse = data.aiResponse;
         const newCount = questionCount + 1;
         setQuestionCount(newCount);
-
-        if (newCount === numQuestions) {
-          const finalMessage =
-            newAiResponse +
-            " It was a pleasure interviewing you.";
-          setConversationHistory((prev) => prev + "\n🤖: " + finalMessage);
-          speak(finalMessage);
-        } else {
-          setConversationHistory((prev) => prev + "\n🤖: " + newAiResponse);
-          speak(newAiResponse);
-        }
+        setConversationHistory((prev) => prev + "\n🤖: " + newAiResponse);
+        speak(newAiResponse);
       } else {
         setError("Error: " + data.message);
       }
