@@ -48,18 +48,19 @@ const Home = ({ setResult }) => {
       })
       .catch((err) => console.error(err));
     setLoading(true);
-  };
+};
   if (loading) {
     return <Loading />;
   }
   return (
     <div className="app">
-      <h1>Resume Builder</h1>
-      <p>Generate a resume with ChatGPT in few seconds</p>
+      <h1>Cover Letter Builder</h1>
+      <p>Generate a cover letter with ChatGPT in few seconds</p>
       <form
         onSubmit={handleFormSubmit}
         method="POST"
         encType="multipart/form-data"
+        className="form"
       >
         <label htmlFor="fullName">Enter your full name</label>
         <input

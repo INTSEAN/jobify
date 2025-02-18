@@ -1,0 +1,73 @@
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  background: transparent;
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+.navbar-home {
+  font-size: 1rem;
+  font-weight: 100;
+  color: #06d6a0;
+  text-decoration: none;
+}
+
+.navbar-buttons {
+  display: flex;
+  gap: 10px; /* Add space between buttons */
+  height: 35px;
+}
+
+.navbar-button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  font-weight: 100;
+  color: #06d6a0;
+  text-decoration: none;
+  border: 1px solid #06d6a0;
+  border-radius: 5px;
+  background: transparent;
+  transition: background-color 0.3s, color 0.3s;
+  display: inline-flex;
+  align-items: center;
+}
+
+.navbar-button:hover {
+  background-color: transparent;
+  border-color: transparent;
+  color: #06d6a0;
+}
+
+.navbar-button::after {
+  content: "→"; /* Unicode arrow */
+  margin-left: 8px; /* Space between text and arrow */
+  transition: transform 0.3s ease;
+}
+
+.navbar-button:hover::after {
+  transform: translateX(5px); /* Move arrow slightly on hover */
+}
+
+.navbar-button.inverted {
+  background-color: transparent;
+  border-color: transparent;
+  color: #06d6a0;
+}
+
+.navbar-button.inverted:hover {
+  background-color: #f8ffe5;
+  color: #06d6a0;
+}
+
+.navbar-divider {
+  width: 100%;
+  border: 3px solid #06d6a0;
+  margin: 0;
+}

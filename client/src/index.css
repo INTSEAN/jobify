@@ -6,6 +6,14 @@
   margin: 0;
   padding: 0;
 }
+
+body {
+  background-color: black;
+}
+
+form, input, h3, button, .app, .nestedContainer, .companies, .currentInput, #photo, #addBtn, #deleteBtn, .container, .header, .resumeTitle, .headerTitle, .resumeImage, .resumeBody, .resumeBodyTitle, .resumeBodyContent {
+  font-weight: 100;
+}
 form {
   padding: 10px;
   width: 80%;
@@ -26,13 +34,19 @@ button {
   padding: 15px;
   cursor: pointer;
   outline: none;
-  background-color: #5d3891;
-  border: none;
-  color: #f5f5f5;
+  background-color: transparent;
+  border: 1px solid #06d6a0;
+  color: #f8ffe5;
   font-size: 16px;
   font-weight: bold;
   border-radius: 3px;
 }
+button:hover {
+  background-color: transparent;
+  border-color: transparent;
+  color: #06d6a0;
+}
+
 .app {
   min-height: 100vh;
   display: flex;
@@ -62,11 +76,21 @@ button {
   width: 50%;
 }
 #addBtn {
-  background-color: green;
+  background-color: #06d6a0;
   margin-right: 5px;
 }
+#addBtn:hover {
+  background-color: #f8ffe5;
+  color: #06d6a0;
+}
+
 #deleteBtn {
-  background-color: red;
+  background-color: #f8ffe5;
+  color: #d60606;
+}
+#deleteBtn:hover {
+  background-color: #d60606;
+  color: #f8ffe5;
 }
 .container {
   min-height: 100vh;
@@ -75,8 +99,10 @@ button {
 .header {
   width: 80%;
   margin: 0 auto;
+  margin-top: 30px;
   min-height: 10vh;
-  background-color: #e8e2e2;
+  background-color: #06d6a0;
+  color: #f8ffe5;
   padding: 30px;
   border-radius: 3px 3px 0 0;
   display: flex;
@@ -98,9 +124,10 @@ button {
 .resumeBody {
   width: 80%;
   margin: 0 auto;
+  color: #f8ffe5;
   padding: 30px;
   min-height: 80vh;
-  border: 1px solid #e0e0ea;
+  border: 1px solid #06d6a0;
 }
 .resumeBodyTitle {
   margin-bottom: 5px;
@@ -108,4 +135,107 @@ button {
 .resumeBodyContent {
   text-align: justify;
   margin-bottom: 30px;
+}
+
+label, h3, h1 {
+  color: #f8ffe5;
+}
+
+.app > p {
+  color: #f8ffe5;
+}
+
+.form {
+  border: 3px dotted #06d6a0;
+  border-radius: 8px;
+  padding: 20px;
+  background-color: black;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+  transition: box-shadow 0.3s ease;
+}
+
+.form:hover {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.form input,
+.form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.form input:focus,
+.form textarea:focus {
+  border-color: #06d6a0;
+}
+
+/* styling for resume cover letter file input and button */
+
+
+
+.form button {
+  padding: 12px 20px;
+  background-color: transparent;
+  border: 1px solid #06d6a0;
+  color: #f8ffe5;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: 100;
+  transition: background-color 0.3s;
+}
+
+.form button:hover {
+  background-color: transparent;
+  border-color: transparent;
+  color: #06d6a0;
+}
+
+.form input[type="file"] {
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  background-color: transparent;
+  color: #f8ffe5;
+}
+
+
+.print-button {
+  display: block; /* Ensure the button is treated as a block element */
+  margin: 20px auto; /* Center the button horizontally */
+  padding: 12px 20px;
+  background-color: transparent;
+  color: #f8ffe5;
+  border: 1px solid #06d6a0;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.print-button:hover {
+  background-color: transparent;
+  border-color: transparent;
+  color: #06d6a0;
+}
+
+.end-interview {
+  background-color: #f8ffe5;
+  color: #d60606;
+}
+
+.end-interview:hover {
+  background-color: #d60606;
+  color: #f8ffe5;
+}
+
+.voiceSelect {
+  background-color: transparent;
+  color: #06d6a0;
 }
