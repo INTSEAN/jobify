@@ -126,7 +126,7 @@ const InterviewConversation = () => {
         if (newCount === numQuestions) {
           const finalMessage =
             newAiResponse +
-            " Thank you for your time, this concludes our interview.";
+            " It was a pleasure interviewing you.";
           setConversationHistory((prev) => prev + "\n🤖: " + finalMessage);
           speak(finalMessage);
         } else {
