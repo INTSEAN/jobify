@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Loading from "./Loading";
 import axios from "axios";
+import ErrorPage from "./ErrorPage";
 
 const Home = ({ setResult }) => {
   const [fullName, setFullName] = useState("");
@@ -50,6 +51,7 @@ const Home = ({ setResult }) => {
       .then((res) => {
         if (res.data.message) {
           setResult(res.data.data);
+          localStorage.setItem("coverLetterResult", JSON.stringify(res.data.data));
           navigate("/resume");
         }
       })
@@ -59,6 +61,7 @@ const Home = ({ setResult }) => {
   if (loading) {
     return <Loading />;
   }
+  
   return (
     <div className="app">
       <h1>Cover Letter Builder</h1>
