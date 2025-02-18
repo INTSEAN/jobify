@@ -42,13 +42,6 @@ const CoverLetter = ({ result }) => {
               {data.currentLength} year(s) work experience
             </p>
           </div>
-          <div>
-            <img
-              src={data.image_url}
-              alt={data.fullName}
-              className="resumeImage"
-            />
-          </div>
         </header>
         <div className="resumeBody">
           <div>
