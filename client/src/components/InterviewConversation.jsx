@@ -258,6 +258,9 @@ const InterviewConversation = () => {
           ))}
         </select>
         <br />
+        <button type="submit" style={{ marginTop: "10px" }}>
+          Restart Interview
+        </button>
       </form>
       <div style={{ marginTop: "10px", display: "flex", alignItems: "center" }}>
         <VoiceInterface
