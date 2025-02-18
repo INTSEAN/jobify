@@ -1,15 +1,18 @@
-# AI RESUME BUILDER USING REACT,NODE AND CHAT GPT3 🚀
+# AI JOBIFY USING REACT,NODE AND CHAT GPT4 🚀
 
 <!-- breif description of the app -->
-AI Resume Builder is a web app that helps you to create a resume in a few minutes. It uses GPT-3 to generate resume templates and also uses GPT-3 to generate resume content. It also provides a resume preview and resume download functionality.
+AI Jobify is a web app that helps you to create a cover letter in a few minutes. It uses GPT-4 to generate cover letter templates and also uses GPT-4 to conduct interviews. It also provides a cover letter preview and cover letter download functionality.
 
 
 ### What it can do
 <!-- give app functions based on description -->
-- [x] Resume Template Generation
-- [x] Resume Content Generation
-- [x] Resume Preview
-- [x] Resume Download
+- [x] Cover Letter Template Generation
+- [x] Cover Letter Content Generation
+- [x] Cover Letter Preview
+- [x] Cover Letter Download
+- [x] Interview Preparation
+- [x] Interview Conduct
+- [x] Interview Analysis
 
 
 ### How to use
@@ -21,5 +24,4 @@ AI Resume Builder is a web app that helps you to create a resume in a few minute
 
 ### Credits
 <!-- give credits to the developers -->
-- [x] [GPT-3](https://openai.com/blog/gpt-3-apps/)
 - [x] [Novu](https://dev.to/novu)
