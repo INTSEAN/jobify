@@ -40,4 +40,22 @@
   background-color: transparent;
   border-color: transparent;
   color: #06d6a0;
+}
+
+.powered-by-ai {
+  margin-bottom: 20px;
+  padding: 10px 20px;
+  background-color: #032a1f;
+  border: 1px solid #06b083;
+  color: #06d6a0;
+  border-radius: 20px;
+  font-weight: 400;
+  transition: background-color 0.3s;
+}
+
+.powered-by-ai:hover {
+  background-color: transparent;
+  border: 1px solid #f8ffe5;
+  color: #f8ffe5;
+  transition: background-color 0.5s;
 } 

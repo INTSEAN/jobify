@@ -5,6 +5,7 @@ import "./Hero.css"; // Create a separate CSS file for Hero styles
 const Hero = () => {
   return (
     <div className="hero">
+      <button className="powered-by-ai">Powered by AI</button>
       <h1>Your No. 1 Job Application Tool</h1>
       <p>
         Create your professional cover letter and mock interview in minutes
