@@ -31,9 +31,19 @@ const InterviewConversation = () => {
   useEffect(() => {
     const loadVoices = () => {
       const availableVoices = window.speechSynthesis.getVoices();
-      setVoices(availableVoices);
-      if (availableVoices.length > 0) {
-        setSelectedVoice(availableVoices[0].name); // Default to the first available voice
+      const sortedVoices = availableVoices.sort((a, b) => {
+        const isGoogleA = a.name.toLowerCase().includes("google");
+        const isGoogleB = b.name.toLowerCase().includes("google");
+        return isGoogleA === isGoogleB ? 0 : isGoogleA ? -1 : 1;
+      });
+      setVoices(sortedVoices);
+      const defaultGoogleVoice = sortedVoices.find((voice) =>
+        voice.name.toLowerCase().includes("us english")
+      );
+      if (defaultGoogleVoice) {
+        setSelectedVoice(defaultGoogleVoice.name);
+      } else if (sortedVoices.length > 0) {
+        setSelectedVoice(sortedVoices[0].name); // Fallback to the first available voice
       }
     };
 

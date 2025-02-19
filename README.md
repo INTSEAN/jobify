@@ -94,7 +94,9 @@ npm install
 Configure Environment Variables:
 
 Create a `.env` file in the server directory and add the following:
+
 ```env
+
 PORT=5000
 OPENAI_API_KEY=your_openai_api_key_here
 # Add any additional server-specific variables as needed
@@ -103,13 +105,20 @@ OPENAI_API_KEY=your_openai_api_key_here
 ### Client Setup
 
 Open a new terminal window/tab and navigate to the client folder:
+
 ```bash
+
 cd client
+
 ```
+
 Install dependencies:
+
 ```bash
 npm install
+
 ```
+
 Adjust any client-side configurations if necessary (e.g., API endpoints).
 
 ### Environment Variables
@@ -123,6 +132,7 @@ Ensure that your API keys and other sensitive data are kept secure. The primary 
 ## Running the Application
 
 You can run both the server and the client concurrently. If you have a root-level script set up (e.g., using the concurrently package), simply run from the project root:
+
 ```bash
 npm run dev
 ```
@@ -130,12 +140,15 @@ npm run dev
 Alternatively, run them in separate terminal windows:
 
 Start the Server:
+
 ```bash
+
 cd server
 npm start
 ```
 
 Start the Client:
+
 ```bash
 cd client
 npm start
@@ -187,18 +200,30 @@ Jobify can be deployed on various cloud platforms such as Vercel, Heroku, or AWS
 Contributions are welcome! To contribute:
 
 1. Fork the repository.
+
 2. Create a new branch:
+
    ```bash
+
    git checkout -b feature/your-feature
+   
    ```
+
 3. Commit your changes:
+
    ```bash
    git commit -m "Add some feature"
+
    ```
+
 4. Push to your branch:
+
    ```bash
+
    git push origin feature/your-feature
+
    ```
+
 5. Open a Pull Request detailing your changes.
 
 ---
