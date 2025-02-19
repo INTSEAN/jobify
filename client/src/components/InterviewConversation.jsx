@@ -17,6 +17,10 @@ const InterviewConversation = () => {
   const timerIntervalRef = useRef(null);
   const [numQuestions, setNumQuestions] = useState(5);
   const [difficulty, setDifficulty] = useState("medium");
+  const [screenSize, setScreenSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
 
   useEffect(() => {
     if (error) {
@@ -170,6 +174,34 @@ const InterviewConversation = () => {
   const handleDifficultyChange = (level) => {
     setDifficulty(level);
   };
+
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  if (screenSize.width <= 700 || screenSize.height <= 600) {
+    return (
+      <div className="desktop-styling">
+        <p style={{ color: "#f8ffe5" }}>
+          We recommend using a larger screen for better user experience.
+        </p>
+        <span>
+          <i className="fa fa-desktop" aria-hidden="true"></i>
+        </span>
+      </div>
+    );
+  }
 
   return (
     <div

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import Loading from "./Loading";
 import axios from "axios";
@@ -12,6 +12,10 @@ const Home = ({ setResult }) => {
   const [companyInfo, setCompanyInfo] = useState([{ name: "", position: "" }]);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const [screenSize, setScreenSize] = useState({
+    width: window.innerWidth,
+    height: window.innerHeight,
+  });
 
   const handleAddCompany = () =>
     setCompanyInfo([...companyInfo, { name: "", position: "" }]);
@@ -51,7 +55,10 @@ const Home = ({ setResult }) => {
       .then((res) => {
         if (res.data.message) {
           setResult(res.data.data);
-          localStorage.setItem("coverLetterResult", JSON.stringify(res.data.data));
+          localStorage.setItem(
+            "coverLetterResult",
+            JSON.stringify(res.data.data)
+          );
           navigate("/resume");
         }
       })
@@ -61,7 +68,35 @@ const Home = ({ setResult }) => {
   if (loading) {
     return <Loading />;
   }
-  
+
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenSize({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+  if (screenSize.width <= 700 || screenSize.height <= 600) {
+    return (
+      <div className="desktop-styling">
+        <p style={{ color: "#f8ffe5" }}>
+          We recommend using a larger screen for better user experience.
+        </p>
+        <span>
+          <i className="fa fa-desktop" aria-hidden="true"></i>
+        </span>
+      </div>
+    );
+  }
+
   return (
     <div className="app">
       <h1>Cover Letter Builder</h1>
